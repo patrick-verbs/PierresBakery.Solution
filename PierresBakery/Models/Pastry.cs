@@ -8,7 +8,7 @@ namespace PierresBakeryNamespace.Models
     private static Dictionary<string, int> _pastryMenu = new Dictionary<string, int>()
     // Lists choices of pastry & their corresponding base-price
     {
-      {"pastry", 5}
+      {"pastry", 2}
     };
 
     private static Dictionary<string, Dictionary<string, int>> _currentPastryOrder = new Dictionary<string, Dictionary<string, int>>() {};
