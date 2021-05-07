@@ -40,13 +40,14 @@ namespace PierresBakeryNamespace.Models
       int totalDiscount = 0;
       int totalPastryItems = 0;
 
-      // foreach(var pastryType in _currentPastryOrder)
-      // {
-      //   totalPastryItems += pastryType.Value["count"];
-      // }
+      foreach(var pastryType in _currentPastryOrder)
+      {
+        totalPastryItems += pastryType.Value["count"];
+      }
 
-      // double oneThirdPastryItems = totalPastryItems / 3;
-      // totalDiscount += 5 * Convert.ToInt32(Math.Floor(oneThirdPastryItems));
+      // At $2 each, "3 for $5" is simply a $1 discount for every trio of pastries
+      double totalPastryItemTrios = totalPastryItems / 3;
+      totalDiscount += Convert.ToInt32(Math.Floor(totalPastryItemTrios));
 
       return totalDiscount;
     }
