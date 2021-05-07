@@ -32,10 +32,6 @@ namespace PierresBakeryNamespace.Models
         }
       };
 
-      Console.WriteLine(_currentBreadOrder["bread"]["unit price"]);
-      Console.WriteLine(_currentBreadOrder["bread"]["count"]);
-      Console.WriteLine(_currentBreadOrder["bread"]["subtotal"]);
-
       return _currentBreadOrder;
     }
   }
