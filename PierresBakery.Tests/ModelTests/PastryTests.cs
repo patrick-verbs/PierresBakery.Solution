@@ -10,7 +10,7 @@ namespace PierresBakeryTestNamespace.Test
   {
     public void Dispose()
     {
-      Bread.ClearAll();
+      Pastry.ClearAll();
     }
 
     [TestMethod]
@@ -42,20 +42,20 @@ namespace PierresBakeryTestNamespace.Test
       Assert.AreEqual(expectedPastryOrder["pastry"]["subtotal"], returnedPastryOrder[pastryChoice]["subtotal"]);
     }
 
-    // [TestMethod]
-    // public void breadDiscounts_BuyTwoGetOneFree_Five()
-    // {
-    //   // Arrange
-    //   string breadChoice = "bread";
-    //   int breadCount = 3;
-    //   int expectedDiscount = 5;
+    [TestMethod]
+    public void pastryDiscounts_ThreeFiveDollars_One()
+    {
+      // Arrange
+      string pastryChoice = "pastry";
+      int pastryCount = 3;
+      int expectedDiscount = 1;// At $2 each, 3 pastries for $5 = $1 discount
 
-    //   // Act
-    //   Dictionary<string, Dictionary<string, int>> returnedBreadOrder = Bread.GetBreadOrder(breadChoice, breadCount);
-    //   int returnedDiscount = Bread.breadDiscounts();
+      // Act
+      Dictionary<string, Dictionary<string, int>> returnedPastryOrder = Pastry.GetPastryOrder(pastryChoice, pastryCount);
+      int returnedDiscount = Pastry.pastryDiscounts();
 
-    //   // Assert
-    //   Assert.AreEqual(expectedDiscount, returnedDiscount);
-    // }
+      // Assert
+      Assert.AreEqual(expectedDiscount, returnedDiscount);
+    }
   }
 }
