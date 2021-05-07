@@ -6,8 +6,13 @@ using PierresBakeryNamespace.Models;
 namespace PierresBakeryTestNamespace.Test
 {
   [TestClass]
-  public class BreadTests
+  public class BreadTests : IDisposable
   {
+    public void Dispose()
+    {
+      Bread.ClearAll();
+    }
+
     [TestMethod]
     public void GetBreadOrder_CreatesDictionaryOfBread_Dictionary()
     {
@@ -41,6 +46,22 @@ namespace PierresBakeryTestNamespace.Test
       Assert.AreEqual(expectedBreadOrder["bread"]["unit price"], returnedBreadOrder[breadChoice]["unit price"]);
       Assert.AreEqual(expectedBreadOrder["bread"]["count"], returnedBreadOrder[breadChoice]["count"]);
       Assert.AreEqual(expectedBreadOrder["bread"]["subtotal"], returnedBreadOrder[breadChoice]["subtotal"]);
+    }
+
+    [TestMethod]
+    public void breadDiscounts_BuyTwoGetOneFree_Five()
+    {
+      // Arrange
+      string breadChoice = "bread";
+      int breadCount = 3;
+      int expectedDiscount = 5;
+
+      // Act
+      Dictionary<string, Dictionary<string, int>> returnedBreadOrder = Bread.GetBreadOrder(breadChoice, breadCount);
+      int returnedDiscount = Bread.breadDiscounts();
+
+      // Assert
+      Assert.AreEqual(expectedDiscount, returnedDiscount);
     }
   }
 }

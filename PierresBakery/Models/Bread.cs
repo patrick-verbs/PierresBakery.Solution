@@ -34,5 +34,17 @@ namespace PierresBakeryNamespace.Models
 
       return _currentBreadOrder;
     }
+
+    public static int breadDiscounts()
+    {
+      int totalDiscount = 0;
+
+      return totalDiscount;
+    }
+
+        public static void ClearAll()
+    {
+      _currentBreadOrder.Clear();
+    }
   }
 }
