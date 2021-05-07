@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using PierresBakeryNamespace.Models;
 
@@ -13,23 +14,33 @@ namespace PierresBakeryTestNamespace.Test
       // Arrange
       string breadChoice = "bread";
       int breadCount = 1;
-      Dictionary<string, int> expectedBreadChoiceData = new Dictionary<string, int>()
-      {
-        {"unit price", 5},
-        {"count", 1},
-        {"subtotal", 5}
-      };
+      // Dictionary<string, int> expectedBreadChoiceData = new Dictionary<string, int>()
+      // {
+      //   {"unit price", 5},
+      //   {"count", 1},
+      //   {"subtotal", 5}
+      // };
       Dictionary<string, Dictionary<string, int>> expectedBreadOrder = new Dictionary<string, Dictionary<string, int>>()
       {// This dictionary encapsulates the previous one for its value
-        {"bread", expectedBreadChoiceData}
+        {
+          "bread",
+          new Dictionary<string, int>
+          {
+            {"unit price", 5},
+            {"count", 1},
+            {"subtotal", 5}
+          }
+        }
       };
 
       // Act
-      Dictionary<string, int> returnedBreadOrder = Bread.GetBreadOrder(breadChoice, breadCount);
+      Dictionary<string, Dictionary<string, int>> returnedBreadOrder = Bread.GetBreadOrder(breadChoice, breadCount);
       // This should create a nested dictionary from only the 'breadChoice' string and the 'breadCount' int
 
       // Assert
-      CollectionAssert.AreEqual(expectedBreadChoiceData, returnedBreadOrder);
+      Assert.AreEqual(expectedBreadOrder["bread"]["unit price"], returnedBreadOrder[breadChoice]["unit price"]);
+      Assert.AreEqual(expectedBreadOrder["bread"]["count"], returnedBreadOrder[breadChoice]["count"]);
+      Assert.AreEqual(expectedBreadOrder["bread"]["subtotal"], returnedBreadOrder[breadChoice]["subtotal"]);
     }
   }
 }

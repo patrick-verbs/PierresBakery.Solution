@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace PierresBakeryNamespace.Models
@@ -13,7 +14,7 @@ namespace PierresBakeryNamespace.Models
     private static Dictionary<string, Dictionary<string, int>> _currentBreadOrder = new Dictionary<string, Dictionary<string, int>>() {};
     // Tracks instances of bread selections the customer has added to their order
 
-    public static Dictionary<string, int> GetBreadOrder(string breadChoice, int breadCount)
+    public static Dictionary<string, Dictionary<string, int>> GetBreadOrder(string breadChoice, int breadCount)
     {
       Dictionary<string, int> breadChoiceData = new Dictionary<string, int>() {};
       foreach(var breadOption in _breadMenu)
@@ -22,16 +23,20 @@ namespace PierresBakeryNamespace.Models
         {
 
           int unitPrice = breadOption.Value;
-          breadChoiceData.Add("unit price", 5);
-          breadChoiceData.Add("count", 1);
-          breadChoiceData.Add("subtotal", 5);
+          breadChoiceData.Add("unit price", 0);
+          breadChoiceData.Add("count", 0);
+          breadChoiceData.Add("subtotal", 0);
 
           _currentBreadOrder.Add(breadChoice, breadChoiceData);
-          // break;
+          break;
         }
       };
 
-      return breadChoiceData;
+      Console.WriteLine(_currentBreadOrder["bread"]["unit price"]);
+      Console.WriteLine(_currentBreadOrder["bread"]["count"]);
+      Console.WriteLine(_currentBreadOrder["bread"]["subtotal"]);
+
+      return _currentBreadOrder;
     }
   }
 }
