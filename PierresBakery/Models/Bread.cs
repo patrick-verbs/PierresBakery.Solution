@@ -38,6 +38,15 @@ namespace PierresBakeryNamespace.Models
     public static int breadDiscounts()
     {
       int totalDiscount = 0;
+      int totalBreadItems = 0;
+
+      foreach(var breadType in _currentBreadOrder)
+      {
+        totalBreadItems += breadType.Value["count"];
+      }
+
+      double oneThirdBreadItems = totalBreadItems / 3;
+      totalDiscount += 5 * Convert.ToInt32(Math.Floor(oneThirdBreadItems));
 
       return totalDiscount;
     }
