@@ -13,16 +13,23 @@ namespace PierresBakeryTestNamespace.Test
       // Arrange
       string breadChoice = "bread";
       int breadCount = 1;
-      Dictionary<string, int> expectedBreadOrder = new Dictionary<string, int>()
+      Dictionary<string, int> expectedBreadChoiceData = new Dictionary<string, int>()
       {
-        {"bread", 5}
+        {"unit price", 5},
+        {"count", 1},
+        {"subtotal", 5}
+      };
+      Dictionary<string, Dictionary<string, int>> expectedBreadOrder = new Dictionary<string, Dictionary<string, int>>()
+      {// This dictionary encapsulates the previous one for its value
+        {"bread", expectedBreadChoiceData}
       };
 
       // Act
       Dictionary<string, int> returnedBreadOrder = Bread.GetBreadOrder(breadChoice, breadCount);
+      // This should create a nested dictionary from only the 'breadChoice' string and the 'breadCount' int
 
       // Assert
-      CollectionAssert.AreEqual(expectedBreadOrder, returnedBreadOrder);
+      CollectionAssert.AreEqual(expectedBreadChoiceData, returnedBreadOrder);
     }
   }
 }
