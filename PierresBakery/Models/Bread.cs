@@ -10,22 +10,29 @@ namespace PierresBakeryNamespace.Models
       {"bread", 5}
     };
 
-    private static Dictionary<string, int> _currentOrder = new Dictionary<string, int>() {};
+    private static Dictionary<string, int> _currentBreadOrder = new Dictionary<string, int>() {};
     // Tracks instances of bread selections the customer has added to their order
 
-    public Bread(string breadType)
+    public static Dictionary<string, object> GetBreadOrder(string breadChoice, int breadCount)
     {
-      foreach(var kvp in _breadMenu)
+      foreach(var breadOption in _breadMenu)
       {
-        _currentOrder.Add(kvp.Key, kvp.Value);
-      }
-    }
+        if(breadChoice == breadOption.Key)
+        {
+          Dictionary<string, int> breadChoiceData = new Dictionary<string, int>() {};
 
-    public static Dictionary<string, int> GetBreadOrder(string breadChoice, int breadCount)
-    {
-      // Dictionary<string, int> breadOrder = _currentOrder.AddBread(breadChoice);
-      _currentOrder = Bread(breadChoice);
-      // int totalPrice = 0;
+          int unitPrice = breadOption.Value;
+          breadChoiceData.Add("unit price", unitPrice);
+          breadChoiceData.Add("count", breadCount);
+          breadChoiceData.Add("subtotal", breadCount * unitPrice);
+
+          _currentBreadOrder.Add(breadChoice, breadChoiceData);
+          break;
+        }
+      }
+
+
+      int totalPrice = 0;
 
       // for(int i; i <= breadCount; i++)
       // {
@@ -33,7 +40,8 @@ namespace PierresBakeryNamespace.Models
       //   totalPrice += breadOrder.
       // }
 
-      return _currentOrder;
+      Dictionary<string, object> thisBreadItem = new Dictionary<string, object>() {};
+      return _currentBreadOrder;
     }
   }
 }
