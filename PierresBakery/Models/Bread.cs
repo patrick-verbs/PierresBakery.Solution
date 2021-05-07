@@ -51,7 +51,7 @@ namespace PierresBakeryNamespace.Models
       return totalDiscount;
     }
 
-        public static void ClearAll()
+    public static void ClearAll()
     {
       _currentBreadOrder.Clear();
     }
