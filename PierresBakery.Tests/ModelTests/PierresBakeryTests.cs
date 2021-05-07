@@ -1,13 +1,13 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TemplateNameSpace.Models;
+using PierresBakeryNamespace.Models;
 
-namespace TemplateNameSpace.Test
+namespace PierresBakeryNamespace.Test
 {
   [TestClass]
-  public class Template
+  public class PierresBakery
   {
     [TestMethod]
-    public void TemplateConstructor_CreatesInstanceOfTemplate_Template()
+    public void PierresBakeryConstructor_CreatesInstanceOfSomething_Result()
     {
       Template newTemplate = new Template();
       Assert.AreEqual(typeof(Template), newTemplate.GetType());
