@@ -12,13 +12,14 @@ namespace PierresBakeryTestNamespace.Test
     {
       // Arrange
       string breadChoice = "bread";
-      Dictionary<string, int> expectedBreadOrder = new Dictionary<char, int>()
+      int breadCount = 1;
+      Dictionary<string, int> expectedBreadOrder = new Dictionary<string, int>()
       {
-        {"bread", 5}
+        {"bread", 1}
       };
 
       // Act
-      Dictionary<string, int> returnedBreadOrder = Bread.GetBreadOrder(breadChoice);
+      Dictionary<string, int> returnedBreadOrder = Bread.GetBreadOrder(breadChoice, breadCount);
 
       // Assert
       CollectionAssert.AreEqual(expectedBreadOrder, returnedBreadOrder);
