@@ -15,7 +15,7 @@ namespace PierresBakeryTestNamespace.Test
       int breadCount = 1;
       Dictionary<string, int> expectedBreadOrder = new Dictionary<string, int>()
       {
-        {"bread", 1}
+        {"bread", 5}
       };
 
       // Act
