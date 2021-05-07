@@ -23,9 +23,9 @@ namespace PierresBakeryNamespace.Models
         {
 
           int unitPrice = breadOption.Value;
-          breadChoiceData.Add("unit price", 0);
-          breadChoiceData.Add("count", 0);
-          breadChoiceData.Add("subtotal", 0);
+          breadChoiceData.Add("unit price", 5);
+          breadChoiceData.Add("count", 1);
+          breadChoiceData.Add("subtotal", 5);
 
           _currentBreadOrder.Add(breadChoice, breadChoiceData);
           break;
