@@ -45,8 +45,9 @@ namespace PierresBakeryNamespace.Models
         totalBreadItems += breadType.Value["count"];
       }
 
-      double oneThirdBreadItems = totalBreadItems / 3;
-      totalDiscount += 5 * Convert.ToInt32(Math.Floor(oneThirdBreadItems));
+      // At $5 each, "buy 2 get 1 free" is simply a $5 discount for every trio of bread loaves/items
+      int totalBreadItemTrios = totalBreadItems / 3;// Rounds down per integer division specs
+      totalDiscount += 5 * totalBreadItemTrios;
 
       return totalDiscount;
     }

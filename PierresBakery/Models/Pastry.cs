@@ -46,8 +46,8 @@ namespace PierresBakeryNamespace.Models
       }
 
       // At $2 each, "3 for $5" is simply a $1 discount for every trio of pastries
-      double totalPastryItemTrios = totalPastryItems / 3;
-      totalDiscount += Convert.ToInt32(Math.Floor(totalPastryItemTrios));
+      int totalPastryItemTrios = totalPastryItems / 3;// Rounds down per integer division specs
+      totalDiscount += totalPastryItemTrios;
 
       return totalDiscount;
     }
