@@ -21,13 +21,21 @@ namespace PierresBakeryNamespace.Models
       {
         if(breadChoice == breadOption.Key)
         {
-
           int unitPrice = breadOption.Value;
+
           breadChoiceData.Add("unit price", breadOption.Value);
           breadChoiceData.Add("count", breadCount);
           breadChoiceData.Add("subtotal", breadCount * unitPrice);
 
-          _currentBreadOrder.Add(breadChoice, breadChoiceData);
+          bool repeatBreadChoice = _currentBreadOrder.ContainsKey(breadChoice);
+          if(repeatBreadChoice)
+          {
+            _currentBreadOrder[breadChoice]["count"] += breadCount;
+            _currentBreadOrder[breadChoice]["subtotal"] += breadCount * unitPrice;
+          }
+          else {
+            _currentBreadOrder.Add(breadChoice, breadChoiceData);
+          }
           break;
         }
       };
