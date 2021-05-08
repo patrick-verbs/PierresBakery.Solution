@@ -50,14 +50,16 @@ namespace PierresBakeryTestNamespace.Test
       string secondPastryChoice = "pastry";
       int firstPastryCount = 4;
       int secondPastryCount = 8;
-      int expectedPastryTotal = firstPastryCount + secondPastryCount;
+      int expectedCombinedCount = firstPastryCount + secondPastryCount;
+      int expectedCombinedSubtotal = 24;
 
       // Act
       Dictionary<string, Dictionary<string, int>> returnedPastryOrder = Pastry.GetPastryOrder(firstPastryChoice, firstPastryCount);
       returnedPastryOrder = Pastry.GetPastryOrder(secondPastryChoice, secondPastryCount);
 
       // Assert
-      Assert.AreEqual(expectedPastryTotal, returnedPastryOrder["pastry"]["count"]);
+      Assert.AreEqual(expectedCombinedCount, returnedPastryOrder["pastry"]["count"]);
+      Assert.AreEqual(expectedCombinedSubtotal, returnedPastryOrder["pastry"]["subtotal"]);
     }
 
     [TestMethod]

@@ -27,7 +27,15 @@ namespace PierresBakeryNamespace.Models
           pastryChoiceData.Add("count", pastryCount);
           pastryChoiceData.Add("subtotal", pastryCount * unitPrice);
 
-          _currentPastryOrder.Add(pastryChoice, pastryChoiceData);
+          bool repeatPastryChoice = _currentPastryOrder.ContainsKey(pastryChoice);
+          if(repeatPastryChoice)
+          {
+            _currentPastryOrder[pastryChoice]["count"] = 0;
+            _currentPastryOrder[pastryChoice]["subtotal"] = 0;
+          }
+          else {
+            _currentPastryOrder.Add(pastryChoice, pastryChoiceData);
+          }
           break;
         }
       };
