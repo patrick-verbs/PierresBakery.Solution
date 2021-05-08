@@ -19,12 +19,6 @@ namespace PierresBakeryTestNamespace.Test
       // Arrange
       string breadChoice = "bread";
       int breadCount = 1;
-      // Dictionary<string, int> expectedBreadChoiceData = new Dictionary<string, int>()
-      // {
-      //   {"unit price", 5},
-      //   {"count", 1},
-      //   {"subtotal", 5}
-      // };
       Dictionary<string, Dictionary<string, int>> expectedBreadOrder = new Dictionary<string, Dictionary<string, int>>()
       {// This dictionary encapsulates the previous one for its value
         {
@@ -46,6 +40,26 @@ namespace PierresBakeryTestNamespace.Test
       Assert.AreEqual(expectedBreadOrder["bread"]["unit price"], returnedBreadOrder[breadChoice]["unit price"]);
       Assert.AreEqual(expectedBreadOrder["bread"]["count"], returnedBreadOrder[breadChoice]["count"]);
       Assert.AreEqual(expectedBreadOrder["bread"]["subtotal"], returnedBreadOrder[breadChoice]["subtotal"]);
+    }
+
+    [TestMethod]
+    public void GetBreadOrder_AccumulateRepeatBreadsToSameDictionaryItem_Twelve()
+    {
+      // Arrange
+      string firstBreadChoice = "bread";
+      string secondBreadChoice = "bread";
+      int firstBreadCount = 5;
+      int secondBreadCount = 10;
+      int expectedCombinedCount = firstBreadCount + secondBreadCount;
+      int expectedCombinedSubtotal = expectedCombinedCount * 5;
+
+      // Act
+      Dictionary<string, Dictionary<string, int>> returnedBreadOrder = Bread.GetBreadOrder(firstBreadChoice, firstBreadCount);
+      returnedBreadOrder = Bread.GetBreadOrder(secondBreadChoice, secondBreadCount);
+
+      // Assert
+      Assert.AreEqual(expectedCombinedCount, returnedBreadOrder["bread"]["count"]);
+      Assert.AreEqual(expectedCombinedSubtotal, returnedBreadOrder["bread"]["subtotal"]);
     }
 
     [TestMethod]
