@@ -43,6 +43,24 @@ namespace PierresBakeryTestNamespace.Test
     }
 
     [TestMethod]
+    public void GetPastryOrder_AccumulateRepeatPastriesToSameDictionaryItem_Twelve()
+    {
+      // Arrange
+      string firstPastryChoice = "pastry";
+      string secondPastryChoice = "pastry";
+      int firstPastryCount = 4;
+      int secondPastryCount = 8;
+      int expectedPastryTotal = firstPastryCount + secondPastryCount;
+
+      // Act
+      Dictionary<string, Dictionary<string, int>> returnedPastryOrder = Pastry.GetPastryOrder(firstPastryChoice, firstPastryCount);
+      returnedPastryOrder = Pastry.GetPastryOrder(secondPastryChoice, secondPastryCount);
+
+      // Assert
+      Assert.AreEqual(expectedPastryTotal, returnedPastryOrder["pastry"]["count"]);
+    }
+
+    [TestMethod]
     public void pastryDiscounts_ThreeFiveDollars_One()
     {
       // Arrange
