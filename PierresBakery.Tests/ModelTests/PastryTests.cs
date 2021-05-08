@@ -51,7 +51,7 @@ namespace PierresBakeryTestNamespace.Test
       int firstPastryCount = 4;
       int secondPastryCount = 8;
       int expectedCombinedCount = firstPastryCount + secondPastryCount;
-      int expectedCombinedSubtotal = 24;
+      int expectedCombinedSubtotal = expectedCombinedCount * 2;
 
       // Act
       Dictionary<string, Dictionary<string, int>> returnedPastryOrder = Pastry.GetPastryOrder(firstPastryChoice, firstPastryCount);

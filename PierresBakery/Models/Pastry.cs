@@ -21,8 +21,8 @@ namespace PierresBakeryNamespace.Models
       {
         if(pastryChoice == pastryOption.Key)
         {
-
           int unitPrice = pastryOption.Value;
+
           pastryChoiceData.Add("unit price", pastryOption.Value);
           pastryChoiceData.Add("count", pastryCount);
           pastryChoiceData.Add("subtotal", pastryCount * unitPrice);
