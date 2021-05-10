@@ -14,7 +14,7 @@ namespace PierresBakeryTestNamespace.Test
     }
 
     [TestMethod]
-    public void GetPastryOrder_CreatesDictionaryOfPastry_Dictionary()
+    public void SetPastryOrder_CreatesDictionaryOfPastry_Dictionary()
     {
       // Arrange
       string pastryChoice = "pastry";
@@ -33,7 +33,8 @@ namespace PierresBakeryTestNamespace.Test
       };
 
       // Act
-      Dictionary<string, Dictionary<string, int>> returnedPastryOrder = Pastry.GetPastryOrder(pastryChoice, pastryCount);
+      Pastry.SetPastryOrder(pastryChoice, pastryCount);
+      Dictionary<string, Dictionary<string, int>> returnedPastryOrder = Pastry.GetPastryOrder();
       // This should create a nested dictionary from only the 'pastryChoice' string and the 'pastryCount' int
 
       // Assert
@@ -43,7 +44,7 @@ namespace PierresBakeryTestNamespace.Test
     }
 
     [TestMethod]
-    public void GetPastryOrder_AccumulateRepeatPastriesToSameDictionaryItem_Twelve()
+    public void SetPastryOrder_AccumulateRepeatPastriesToSameDictionaryItem_Twelve()
     {
       // Arrange
       string firstPastryChoice = "pastry";
@@ -54,8 +55,10 @@ namespace PierresBakeryTestNamespace.Test
       int expectedCombinedSubtotal = expectedCombinedCount * 2;
 
       // Act
-      Dictionary<string, Dictionary<string, int>> returnedPastryOrder = Pastry.GetPastryOrder(firstPastryChoice, firstPastryCount);
-      returnedPastryOrder = Pastry.GetPastryOrder(secondPastryChoice, secondPastryCount);
+      Pastry.SetPastryOrder(firstPastryChoice, firstPastryCount);
+      Dictionary<string, Dictionary<string, int>> returnedPastryOrder = Pastry.GetPastryOrder();
+      Pastry.SetPastryOrder(secondPastryChoice, secondPastryCount);
+      returnedPastryOrder = Pastry.GetPastryOrder();
 
       // Assert
       Assert.AreEqual(expectedCombinedCount, returnedPastryOrder["pastry"]["count"]);
@@ -71,7 +74,8 @@ namespace PierresBakeryTestNamespace.Test
       int expectedDiscount = 1;// At $2 each, 3 pastries for $5 = $1 discount
 
       // Act
-      Dictionary<string, Dictionary<string, int>> returnedPastryOrder = Pastry.GetPastryOrder(pastryChoice, pastryCount);
+      Pastry.SetPastryOrder(pastryChoice, pastryCount);
+      Dictionary<string, Dictionary<string, int>> returnedPastryOrder = Pastry.GetPastryOrder();
       int returnedDiscount = Pastry.pastryDiscounts();
 
       // Assert
