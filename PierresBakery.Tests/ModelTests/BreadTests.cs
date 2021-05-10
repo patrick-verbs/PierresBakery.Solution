@@ -68,7 +68,7 @@ namespace PierresBakeryTestNamespace.Test
       // Arrange
       string breadChoice = "bread";
       int breadCount = 3;
-      int expectedDiscount = 5;
+      int expectedDiscount = 5;// At $5 each, "buy 2 get 1 free" = $5 discount
 
       // Act
       Dictionary<string, Dictionary<string, int>> returnedBreadOrder = Bread.GetBreadOrder(breadChoice, breadCount);
