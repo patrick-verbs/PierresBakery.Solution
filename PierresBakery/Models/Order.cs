@@ -9,8 +9,20 @@ namespace PierresBakeryNamespace.Models
 
     public static Dictionary<string, Dictionary<string, int>> GetFullOrder()
     {
-      // Dictionary<string, Dictionary<string, int>> breadOrder = 
-      // _currentOrder.Add()//
+      _currentOrder.Clear();
+
+      Dictionary<string, Dictionary<string, int>> breadOrder = Bread.GetBreadOrder();
+      foreach(var kvp in breadOrder)
+      {
+        _currentOrder.Add(kvp.Key, kvp.Value);
+      }
+
+      Dictionary<string, Dictionary<string, int>> pastryOrder = Pastry.GetPastryOrder();
+      foreach(var kvp in pastryOrder)
+      {
+        _currentOrder.Add(kvp.Key, kvp.Value);
+      }
+
       return _currentOrder;
     }
 
