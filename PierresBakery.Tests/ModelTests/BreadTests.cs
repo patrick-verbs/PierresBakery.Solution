@@ -14,7 +14,7 @@ namespace PierresBakeryTestNamespace.Test
     }
 
     [TestMethod]
-    public void GetBreadOrder_CreatesDictionaryOfBread_Dictionary()
+    public void SetBreadOrder_CreatesDictionaryOfBread_Dictionary()
     {
       // Arrange
       string breadChoice = "bread";
@@ -33,7 +33,8 @@ namespace PierresBakeryTestNamespace.Test
       };
 
       // Act
-      Dictionary<string, Dictionary<string, int>> returnedBreadOrder = Bread.GetBreadOrder(breadChoice, breadCount);
+      Bread.SetBreadOrder(breadChoice, breadCount);
+      Dictionary<string, Dictionary<string, int>> returnedBreadOrder = Bread.GetBreadOrder();
       // This should create a nested dictionary from only the 'breadChoice' string and the 'breadCount' int
 
       // Assert
@@ -54,8 +55,10 @@ namespace PierresBakeryTestNamespace.Test
       int expectedCombinedSubtotal = expectedCombinedCount * 5;
 
       // Act
-      Dictionary<string, Dictionary<string, int>> returnedBreadOrder = Bread.GetBreadOrder(firstBreadChoice, firstBreadCount);
-      returnedBreadOrder = Bread.GetBreadOrder(secondBreadChoice, secondBreadCount);
+      Bread.SetBreadOrder(firstBreadChoice, firstBreadCount);
+      Dictionary<string, Dictionary<string, int>> returnedBreadOrder = Bread.GetBreadOrder();
+      Bread.SetBreadOrder(secondBreadChoice, secondBreadCount);
+      returnedBreadOrder = Bread.GetBreadOrder();
 
       // Assert
       Assert.AreEqual(expectedCombinedCount, returnedBreadOrder["bread"]["count"]);
@@ -71,7 +74,8 @@ namespace PierresBakeryTestNamespace.Test
       int expectedDiscount = 5;// At $5 each, "buy 2 get 1 free" = $5 discount
 
       // Act
-      Dictionary<string, Dictionary<string, int>> returnedBreadOrder = Bread.GetBreadOrder(breadChoice, breadCount);
+      Bread.SetBreadOrder(breadChoice, breadCount);
+      Dictionary<string, Dictionary<string, int>> returnedBreadOrder = Bread.GetBreadOrder();
       int returnedDiscount = Bread.breadDiscounts();
 
       // Assert

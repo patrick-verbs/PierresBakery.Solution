@@ -14,7 +14,7 @@ namespace PierresBakeryNamespace.Models
     private static Dictionary<string, Dictionary<string, int>> _currentBreadOrder = new Dictionary<string, Dictionary<string, int>>() {};
     // Tracks instances of bread selections the customer has added to their order
 
-    public static Dictionary<string, Dictionary<string, int>> GetBreadOrder(string breadChoice, int breadCount)
+    public static void SetBreadOrder(string breadChoice, int breadCount)
     {
       Dictionary<string, int> breadChoiceData = new Dictionary<string, int>() {};
       foreach(var breadOption in _breadMenu)
@@ -39,7 +39,10 @@ namespace PierresBakeryNamespace.Models
           break;
         }
       };
+    }
 
+    public static Dictionary<string, Dictionary<string, int>> GetBreadOrder()
+    {
       return _currentBreadOrder;
     }
 
