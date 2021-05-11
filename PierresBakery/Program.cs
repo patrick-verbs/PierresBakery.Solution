@@ -8,11 +8,38 @@ namespace PierresBakeryNamespace
   {
     public static void Main()
     {
-      Console.WriteLine("Hi! Welcome to Pierre's Bakery!" + "\n");
+      Console.WriteLine("\n" + "Hi! Welcome to Pierre's Bakery!");
+      string contextBread = "";
+      string contextPastry = "";
+      bool isInt;
 
       Shop:
-      Console.WriteLine("Would you like to see our selection of bread, or pastries? " + "(Bread/Pastries/Checkout)" + "\n");
-      string userChoice = (Console.ReadLine()).ToLower();
+      Console.Write("\n" + "Would you like to see our selection of bread, or pastries? " + "(");
+      Console.BackgroundColor = ConsoleColor.DarkMagenta;
+      Console.Write("B");
+      Console.ResetColor();
+      Console.ForegroundColor = ConsoleColor.DarkMagenta;
+      Console.Write("read");
+      Console.ResetColor();
+      Console.Write("/");
+      Console.BackgroundColor = ConsoleColor.Cyan;
+      Console.Write("P");
+      Console.ResetColor();
+      Console.ForegroundColor = ConsoleColor.Cyan;
+      Console.Write("astries");
+      Console.ResetColor();
+      Console.Write("/");
+      Console.BackgroundColor = ConsoleColor.DarkGreen;
+      Console.Write("C");
+      Console.ResetColor();
+      Console.ForegroundColor = ConsoleColor.DarkGreen;
+      Console.Write("heckout");
+      Console.ResetColor();
+      Console.Write(")");
+
+      string userChoice = "";
+      userChoice = (Console.ReadLine()).ToLower();
+
       if (userChoice[0] == 'b')
       {
         goto Bread;
@@ -27,30 +54,80 @@ namespace PierresBakeryNamespace
       }
 
       Bread:
-      Console.WriteLine("How many loaves of bread would you like?");
-      int breadCount = Int32.Parse(Console.ReadLine());
+      Console.WriteLine("\n" + contextBread + "How many loaves of bread would you like?");
+      int breadCount = 0;
+      string breadInput = Console.ReadLine();
+      isInt = int.TryParse(breadInput, out breadCount);
+      if (!isInt)
+      {
+        contextBread = "I'm afraid I didn't quite catch that number! ";
+        goto Bread;
+      }
+
       Bread.SetBreadOrder("bread", breadCount);
       if (breadCount > 1)
       {
-        Console.WriteLine(breadCount + "loaves of bread! That's a lot of bread!");
+        Console.WriteLine("\n" + breadCount + " loaves of bread! That's a lot of bread!");
       }
       else if (breadCount == 1)
       {
-        Console.WriteLine("One loaf of bread for ya? Coming right up!");
+        Console.WriteLine("\n" + "One loaf of bread for ya? Coming right up!");
+      }
+      else if (breadCount == 0)
+      {
+        Console.WriteLine("\n" + "Nothing catching your eye? It is pretty dark and abstract in this command-line bakery...");
+        Console.Write("(OK)");
+        Console.ReadLine();
+      }
+      else if (breadCount < 0)
+      {
+        Console.WriteLine("\n" + "Oh, sorry, we're not buying! We actually bake all our goods fresh in our CSharp oven!");
+        Console.Write("(OK)");
+        Console.ReadLine();
+      }
+      else
+      {
+        contextBread = "I'm afraid I didn't quite catch that number!";
+        goto Bread;
       }
       goto Shop;
 
       Pastry:
-      Console.WriteLine("How many pastries would you like?");
-      int pastryCount = Int32.Parse(Console.ReadLine());
+      Console.WriteLine("\n" + contextPastry + "How many pastries would you like?");
+      int pastryCount = 0;
+      string pastryInput = Console.ReadLine();
+      isInt = int.TryParse(pastryInput, out pastryCount);
+      if (!isInt)
+      {
+        contextPastry = "I'm afraid I didn't quite catch that number! ";
+        goto Pastry;
+      }
+
       Pastry.SetPastryOrder("pastry", pastryCount);
       if (pastryCount > 1)
       {
-        Console.WriteLine(pastryCount + "pastries! That's a lot of sugar!");
+        Console.WriteLine("\n" + pastryCount + " pastries! That's a lot of sugar!");
       }
       else if (pastryCount == 1)
       {
-        Console.WriteLine("One tasty pastry for ya? Coming right up!");
+        Console.WriteLine("\n" + "Just the one pastry for ya? Coming right up!");
+      }
+      else if (pastryCount == 0)
+      {
+        Console.WriteLine("\n" + "Nothing catching your eye? It is pretty dark and abstract in this command-line bakery...");
+        Console.Write("(OK)");
+        Console.ReadLine();
+      }
+      else if (pastryCount < 0)
+      {
+        Console.WriteLine("\n" + "Oh, sorry, we're not buying! We actually bake all our goods fresh in our CSharp oven!");
+        Console.Write("(OK)");
+        Console.ReadLine();
+      }
+      else
+      {
+        contextPastry = "I'm afraid I didn't quite catch that number!";
+        goto Pastry;
       }
       goto Shop;
 
