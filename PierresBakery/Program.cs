@@ -9,12 +9,14 @@ namespace PierresBakeryNamespace
     public static void Main()
     {
       Console.WriteLine("\n" + "Hi! Welcome to Pierre's Bakery!");
+      string contextShop = "";
       string contextBread = "";
       string contextPastry = "";
       bool isInt;
 
       Shop:
-      Console.Write("\n" + "Would you like to see our selection of bread, or pastries? " + "(");
+      Console.WriteLine("\n" + contextShop + "Would you like to see our selection of bread, or pastries?");
+      Console.Write("(");
       Console.BackgroundColor = ConsoleColor.DarkMagenta;
       Console.Write("B");
       Console.ResetColor();
@@ -35,7 +37,7 @@ namespace PierresBakeryNamespace
       Console.ForegroundColor = ConsoleColor.DarkGreen;
       Console.Write("heckout");
       Console.ResetColor();
-      Console.Write(")");
+      Console.Write(") ");
 
       string userChoice = "";
       userChoice = (Console.ReadLine()).ToLower();
@@ -51,6 +53,11 @@ namespace PierresBakeryNamespace
       else if (userChoice[0] == 'c')
       {
         goto Checkout;
+      }
+      else
+      {
+        contextShop = "I have no idea what you just said... ";
+        goto Shop;
       }
 
       Bread:
@@ -68,10 +75,14 @@ namespace PierresBakeryNamespace
       if (breadCount > 1)
       {
         Console.WriteLine("\n" + breadCount + " loaves of bread! That's a lot of bread!");
+        Console.Write("(*nom nom*)");
+        Console.ReadLine();
       }
       else if (breadCount == 1)
       {
         Console.WriteLine("\n" + "One loaf of bread for ya? Coming right up!");
+        Console.Write("(Thanks!)");
+        Console.ReadLine();
       }
       else if (breadCount == 0)
       {
@@ -87,7 +98,7 @@ namespace PierresBakeryNamespace
       }
       else
       {
-        contextBread = "I'm afraid I didn't quite catch that number!";
+        contextBread = "Huh? ";
         goto Bread;
       }
       goto Shop;
@@ -107,10 +118,14 @@ namespace PierresBakeryNamespace
       if (pastryCount > 1)
       {
         Console.WriteLine("\n" + pastryCount + " pastries! That's a lot of sugar!");
+        Console.Write("(Yeah...)");
+        Console.ReadLine();
       }
       else if (pastryCount == 1)
       {
         Console.WriteLine("\n" + "Just the one pastry for ya? Coming right up!");
+        Console.Write("(Thanks!)");
+        Console.ReadLine();
       }
       else if (pastryCount == 0)
       {
@@ -126,20 +141,10 @@ namespace PierresBakeryNamespace
       }
       else
       {
-        contextPastry = "I'm afraid I didn't quite catch that number!";
+        contextPastry = "Huh? ";
         goto Pastry;
       }
       goto Shop;
-
-      // welcome message
-      // view bread or pastry selections
-      // add bread
-      // - choose bread
-      // - exit
-      // add pastry
-      // - choose pastry
-      // - exit
-      // print order
 
       Checkout:
       PrintOrder();
@@ -154,8 +159,10 @@ namespace PierresBakeryNamespace
       {
         runningTotal += fullOrder[kvp.Key]["subtotal"];
 
-        Console.WriteLine(kvp.Key.ToUpper());
-        Console.WriteLine("-----");
+        Console.WriteLine("\n" + kvp.Key.ToUpper());
+        string underline = "---------------";
+        underline = underline.Substring(0, kvp.Key.Length);
+        Console.WriteLine(underline);
         foreach (var nestedKvp in fullOrder[kvp.Key])
         {
           string padding = "";
@@ -171,19 +178,19 @@ namespace PierresBakeryNamespace
         {
           int discounts = Bread.breadDiscounts();
           Console.WriteLine("   discounts:     -" + discounts);
-          Console.WriteLine("");
           runningTotal -= discounts;
         }
         else if (kvp.Key == "pastry")
         {
           int discounts = Pastry.pastryDiscounts();
           Console.WriteLine("   discounts:     -" + discounts);
-          Console.WriteLine("");
           runningTotal -= discounts;
         }
       }
 
-      Console.WriteLine("TOTAL: $" + runningTotal);
+      Console.WriteLine("\n" + "TOTAL: $" + runningTotal);
+      Console.Write("\n" + "Have a good day!");
+      Console.ReadLine();
     }
   }
 }
